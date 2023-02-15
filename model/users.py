@@ -74,16 +74,16 @@ class User(db.Model):
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _question = db.Column(db.String(255), unique=False, nullable=False)
-    _answer = db.Column(db.String(255), unique=True, nullable=False)
+    _correctAnswer = db.Column(db.String(255), unique=True, nullable=False)
 
 
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     posts = db.relationship("Post", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, question, answer):
+    def __init__(self, question, correctAnswer, ):
         self._question = question    # variables with self prefix become part of the object, 
-        self._answer = answer
+        self._correctAnswer = correctAnswer
 
 
     # a name getter method, extracts name from object
@@ -99,16 +99,16 @@ class User(db.Model):
     # a getter method, extracts email from object
     @property
     def uid(self):
-        return self._answer
+        return self._correctAnswer
     
     # a setter function, allows name to be updated after initial object creation
     @uid.setter
     def uid(self, answer):
-        self._answer = answer
+        self._correctAnswer = answer
         
     # check if uid parameter matches user id in object, return boolean
     def is_uid(self, answer):
-        return self._answer == answer
+        return self._correctAnswer == answer
 
 
     # output content using str(object) in human readable form, uses getter
@@ -134,18 +134,18 @@ class User(db.Model):
         return {
             "id": self.id,
             "question": self._question,
-            "answer": self._answer,
+            "correct-answer": self._correctAnswer,
             "posts": [post.read() for post in self.posts]
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, question="", answer=""):
+    def update(self, question="", correctAnswer=""):
         """only updates values with length"""
         if len(question) > 0:
             self.question = question
-        if len(answer) > 0:
-            self.answer = answer
+        if len(correctAnswer) > 0:
+            self.correctAnswer = correctAnswer
         db.session.commit()
         return self
 
@@ -167,11 +167,11 @@ def initUsers():
         db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = User(question='what is a cpu?', answer='central processing unit')
-        u2 = User(question='what does html stand for?', answer='Hypertext Markup Language')
-        u3 = User(question='what does AWS stand for?', answer='amazon web services')
-        u4 = User(question='how do we access linux on our machines', answer='wsl')
-        u5 = User(question='who is our teacher', answer='mr. yeung')
+        u1 = User(question='what is a cpu?', correctAnswer='central processing unit')
+        u2 = User(question='what does html stand for?', correctAnswer='Hypertext Markup Language')
+        u3 = User(question='what does AWS stand for?', correctAnswer='amazon web services')
+        u4 = User(question='how do we access linux on our machines', correctAnswer='wsl')
+        u5 = User(question='who is our teacher', correctAnswer='mr. yeung')
 
         users = [u1, u2, u3, u4, u5]
 
