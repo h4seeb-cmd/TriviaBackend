@@ -74,42 +74,89 @@ class User(db.Model):
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _question = db.Column(db.String(255), unique=False, nullable=False)
-    _correctAnswer = db.Column(db.String(255), unique=True, nullable=False)
-
+    _correctAnswer = db.Column(db.String(255), unique=False, nullable=False)
+    _incorrectAnswer1 = db.Column(db.String(255), unique=False, nullable = False)
+    _incorrectAnswer2 = db.Column(db.String(255), unique=False, nullable = False)
+    _incorrectAnswer3 = db.Column(db.String(255), unique=False, nullable = False)
 
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     posts = db.relationship("Post", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, question, correctAnswer, ):
+    def __init__(self, question, correctAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3):
         self._question = question    # variables with self prefix become part of the object, 
         self._correctAnswer = correctAnswer
+        self._incorrectAnswer1 = incorrectAnswer1
+        self._incorrectAnswer2 = incorrectAnswer2
+        self._incorrectAnswer3 = incorrectAnswer3
+        
 
 
     # a name getter method, extracts name from object
     @property
-    def name(self):
+    def question(self):
         return self._question
     
     # a setter function, allows name to be updated after initial object creation
-    @name.setter
-    def name(self, name):
+    @question.setter
+    def question(self, name):
         self._question = name
     
     # a getter method, extracts email from object
     @property
-    def uid(self):
+    def correctAnswer(self):
         return self._correctAnswer
     
     # a setter function, allows name to be updated after initial object creation
-    @uid.setter
-    def uid(self, answer):
-        self._correctAnswer = answer
+    @correctAnswer.setter
+    def correctAnswer(self, correctAnswer):
+        self._correctAnswer = correctAnswer
         
     # check if uid parameter matches user id in object, return boolean
-    def is_uid(self, answer):
-        return self._correctAnswer == answer
-
+    def is_uid(self, correctAnswer):
+        return self._correctAnswer == correctAnswer
+    
+        # a getter method, extracts email from object
+    @property
+    def incorrectAnswer1(self):
+        return self._incorrectAnswer1
+    
+    # a setter function, allows name to be updated after initial object creation
+    @incorrectAnswer1.setter
+    def incorrectAnswer1(self, incorrectAnswer1):
+        self._incorrectAnswer1 = incorrectAnswer1
+        
+    # check if uid parameter matches user id in object, return boolean
+    def is_uid(self, incorrectAnswer1):
+        return self._incorrectAnswer1 == incorrectAnswer1
+    
+    @property
+    def incorrectAnswer2(self):
+        return self._incorrectAnswer2
+    
+    # a setter function, allows name to be updated after initial object creation
+    @incorrectAnswer2.setter
+    def incorrectAnswer2(self, incorrectAnswer2):
+        self._incorrectAnswer2 = incorrectAnswer2
+        
+    # check if uid parameter matches user id in object, return boolean
+    def is_uid(self, incorrectAnswer2):
+        return self._incorrectAnswer2 == incorrectAnswer2
+    
+    
+    @property
+    def incorrectAnswer3(self):
+        return self._incorrectAnswer3
+    
+    # a setter function, allows name to be updated after initial object creation
+    @incorrectAnswer3.setter
+    def incorrectAnswer3(self, incorrectAnswer3):
+        self._incorrectAnswer3 = incorrectAnswer3
+        
+    # check if uid parameter matches user id in object, return boolean
+    def is_uid(self, incorrectAnswer3):
+        return self._incorrectAnswer3 == incorrectAnswer3
+    
 
     # output content using str(object) in human readable form, uses getter
     # output content using json dumps, this is ready for API response
@@ -134,18 +181,26 @@ class User(db.Model):
         return {
             "id": self.id,
             "question": self._question,
-            "correct-answer": self._correctAnswer,
-            "posts": [post.read() for post in self.posts]
+            "correctAnswer": self._correctAnswer,
+            "incorrectAnswer1": self._incorrectAnswer1,
+            "incorrectAnswer2": self._incorrectAnswer2,
+            "incorrectAnswer3": self._incorrectAnswer3
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, question="", correctAnswer=""):
+    def update(self, question="", correctAnswer="", incorrectAnswer1 = "",  incorrectAnswer2 = "",  incorrectAnswer3 = ""):
         """only updates values with length"""
         if len(question) > 0:
             self.question = question
         if len(correctAnswer) > 0:
             self.correctAnswer = correctAnswer
+        if len(incorrectAnswer1) > 0:
+            self.incorrectAnswer1 = incorrectAnswer1
+        if len(incorrectAnswer2) > 0:
+            self.incorrectAnswer2 = incorrectAnswer2
+        if len(incorrectAnswer3) > 0:
+            self.incorrectAnswer3 = incorrectAnswer3
         db.session.commit()
         return self
 
@@ -167,11 +222,11 @@ def initUsers():
         db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = User(question='what is a cpu?', correctAnswer='central processing unit')
-        u2 = User(question='what does html stand for?', correctAnswer='Hypertext Markup Language')
-        u3 = User(question='what does AWS stand for?', correctAnswer='amazon web services')
-        u4 = User(question='how do we access linux on our machines', correctAnswer='wsl')
-        u5 = User(question='who is our teacher', correctAnswer='mr. yeung')
+        u1 = User(question='what is a cpu?', correctAnswer='central processing unit', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
+        u2 = User(question='what does html stand for?', correctAnswer='Hypertext Markup Language', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
+        u3 = User(question='what does AWS stand for?', correctAnswer='amazon web services', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
+        u4 = User(question='how do we access linux on our machines', correctAnswer='wsl', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
+        u5 = User(question='who is our teacher', correctAnswer='mr. yeung', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
 
         users = [u1, u2, u3, u4, u5]
 
@@ -180,12 +235,12 @@ def initUsers():
             try:
                 '''add a few 1 to 4 notes per user'''
                 for num in range(randrange(1, 4)):
-                    note = "#### " + user.name + " note " + str(num) + ". \n Generated by test data."
+                    note = "#### " + user.question + " note " + str(num) + ". \n Generated by test data."
                     user.posts.append(Post(id=user.id, note=note, image='ncs_logo.png'))
                 '''add user/post data to table'''
                 user.create()
             except IntegrityError:
                 '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"Records exist, duplicate email, or error: {user.uid}")
+                print(f"Records exist, duplicate email, or error: {user.correctAnswer}")
             

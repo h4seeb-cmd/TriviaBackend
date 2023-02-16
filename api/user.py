@@ -2,6 +2,7 @@ import json
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
+import random
 
 from model.users import User
 
@@ -15,8 +16,10 @@ class UserAPI:
     class _Read(Resource):
         def get(self):
             users = User.query.all()    # read/extract all users from database
-            json_ready = [user.read() for user in users]  # prepare output in json
-            return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
+            random.shuffle(users)
+            user = users[0]
+            # json_ready = [user.read() for user in users]  # prepare output in json
+            return jsonify(user.read())  # jsonify creates Flask response object, more specific to APIs than json.dumps
 
 # building RESTapi endpoint
     api.add_resource(_Read, '/')
