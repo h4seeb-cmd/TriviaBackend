@@ -222,11 +222,11 @@ def initUsers():
         db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = User(question='what is a cpu?', correctAnswer='central processing unit', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
-        u2 = User(question='what does html stand for?', correctAnswer='Hypertext Markup Language', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
-        u3 = User(question='what does AWS stand for?', correctAnswer='amazon web services', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
-        u4 = User(question='how do we access linux on our machines', correctAnswer='wsl', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
-        u5 = User(question='who is our teacher', correctAnswer='mr. yeung', incorrectAnswer1 = 'x', incorrectAnswer2 = 'y', incorrectAnswer3 = 'z')
+        u1 = User(question='what is a cpu?', correctAnswer='central processing unit', incorrectAnswer1 = 'coolant protection unit', incorrectAnswer2 = 'unit processor', incorrectAnswer3 = 'man idk')
+        u2 = User(question='what does html stand for?', correctAnswer='Hypertext Markup Language', incorrectAnswer1 = 'Hyperlink Maker Language', incorrectAnswer2 = 'Hyper Mail Markup', incorrectAnswer3 = 'Humphrey Man Table Lawnmower')
+        u3 = User(question='what do we use AWS for?', correctAnswer='Deployment', incorrectAnswer1 = 'Fortnite', incorrectAnswer2 = 'Minecraft', incorrectAnswer3 = 'Java')
+        u4 = User(question='how do we access linux on our machines', correctAnswer='wsl', incorrectAnswer1 = 'pylance', incorrectAnswer2 = 'Mongodb', incorrectAnswer3 = 'ReactJS')
+        u5 = User(question='who is our teacher', correctAnswer='mr. yeung', incorrectAnswer1 = 'jmort223', incorrectAnswer2 = 'nathanial kim', incorrectAnswer3 = 'sabine')
 
         users = [u1, u2, u3, u4, u5]
 

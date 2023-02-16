@@ -4,7 +4,7 @@ from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
 import random
 
-from model.users import User
+from model.QATrivia import User
 
 user_api = Blueprint('user_api', __name__,
                    url_prefix='/api/users')
