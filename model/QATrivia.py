@@ -179,7 +179,7 @@ class User(db.Model):
     # returns dictionary
     def read(self):
         return {
-            "id": self.id,
+            #"id": self.id,
             "question": self._question,
             "correctAnswer": self._correctAnswer,
             "incorrectAnswer1": self._incorrectAnswer1,
