@@ -225,10 +225,14 @@ def initUsers():
         u1 = User(question='what is a cpu?', correctAnswer='central processing unit', incorrectAnswer1 = 'coolant protection unit', incorrectAnswer2 = 'unit processor', incorrectAnswer3 = 'man idk')
         u2 = User(question='what does html stand for?', correctAnswer='Hypertext Markup Language', incorrectAnswer1 = 'Hyperlink Maker Language', incorrectAnswer2 = 'Hyper Mail Markup', incorrectAnswer3 = 'Humphrey Man Table Lawnmower')
         u3 = User(question='what do we use AWS for?', correctAnswer='Deployment', incorrectAnswer1 = 'Fortnite', incorrectAnswer2 = 'Minecraft', incorrectAnswer3 = 'Java')
-        u4 = User(question='how do we access linux on our machines', correctAnswer='wsl', incorrectAnswer1 = 'pylance', incorrectAnswer2 = 'Mongodb', incorrectAnswer3 = 'ReactJS')
-        u5 = User(question='who is our teacher', correctAnswer='mr. yeung', incorrectAnswer1 = 'jmort223', incorrectAnswer2 = 'nathanial kim', incorrectAnswer3 = 'sabine')
-
-        users = [u1, u2, u3, u4, u5]
+        u4 = User(question='how do we access linux on our machines?', correctAnswer='wsl', incorrectAnswer1 = 'pylance', incorrectAnswer2 = 'Mongodb', incorrectAnswer3 = 'ReactJS')
+        u5 = User(question='who is our teacher?', correctAnswer='mr. yeung', incorrectAnswer1 = 'jmort223', incorrectAnswer2 = 'nathanial kim', incorrectAnswer3 = 'sabine')
+        u6 = User(question='what does FUBAR stand for?', correctAnswer='[expletive] up beyond repair', incorrectAnswer1 = 'Flipped u before reprimanding', incorrectAnswer2 = 'Family Under Bad Analogies Reviewed', incorrectAnswer3 = 'huh?')
+        u7 = User(question='how many sprints have we gone through this year?', correctAnswer='23', incorrectAnswer1 = '1', incorrectAnswer2 = '18', incorrectAnswer3 = '52')
+        u8 = User(question='which is NOT an example of proper PII?', correctAnswer='Your car', incorrectAnswer1 = 'House address', incorrectAnswer2 = 'Bank codes', incorrectAnswer3 = 'Passwords')
+        u9 = User(question='what do we use for our databases?', correctAnswer='SQLAlchemy', incorrectAnswer1 = 'XML', incorrectAnswer2 = 'MongoDB', incorrectAnswer3 = 'NodeJS')
+        u10 = User(question='what would constitute as backend development?', correctAnswer='working with python to create things like a database.', incorrectAnswer1 = 'using HTML to create a webpage', incorrectAnswer2 = 'using CSS to style', incorrectAnswer3 = 'Deployment using a platform like AWS')
+        users = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10]
 
         """Builds sample user/note(s) data"""
         for user in users:
