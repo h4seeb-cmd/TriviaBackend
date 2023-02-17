@@ -4,7 +4,7 @@ import threading
 from flask import render_template  # import render_template from "public" flask libraries
 
 # import "packages" from "this" project
-from __init__ import app  # Definitions initialization
+from __init__ import app, db  # Definitions initialization
 from model.jokes import initJokes
 from model.QATrivia import initUsers
 from api.questions import questions_api
@@ -39,6 +39,7 @@ def stub():
 
 @app.before_first_request
 def activate_job():
+    db.init_app(app)
     initJokes()
     initUsers()
 # this runs the application on the development server

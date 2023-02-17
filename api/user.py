@@ -18,39 +18,40 @@ class UserAPI:
             ''' Read data for json body '''
             body = request.get_json()
             
-            ''' Avoid garbage in, error checking '''
-            # validate name
+            # ''' Avoid garbage in, error checking '''
+            # # validate name
             question = body.get('question')
-            if question is None or len(question) < 2:
-                return {'message': f'Name is missing, or is less than 2 characters'}, 400
-            # validate correct answer
+            # if question is None or len(question) < 2:
+            #     return {'message': f'Question is missing, or is less than 2 characters'}, 400
+            # # validate correct answer
             correctAnswer = body.get('correctAnswer')
-            if correctAnswer is None or len(correctAnswer) == 0:
-                return {'message': f'answer is missing'}, 400
-            ''' #1: Key code block, setup USER OBJECT '''
-            uo = User(question=question, 
-                      correctAnswer=correctAnswer)
-            # validate incorrect answers
+            # if correctAnswer is None or len(correctAnswer) == 0:
+            #     return {'message': f'answer is missing'}, 400
+            # ''' #1: Key code block, setup USER OBJECT '''
+            # uo = User(question=question, 
+            #           correctAnswer=correctAnswer)
+            # # validate incorrect answers
             incorrectAnswer1 = body.get('incorrectAnswer1')
-            if incorrectAnswer1 is None or len(incorrectAnswer1) == 0:
-                return {'message': f'answer is missing'}, 400
-            ''' #1: Key code block, setup USER OBJECT '''
-            uo = User(question=question, 
-                      incorrectAnswer1=incorrectAnswer1,)     
+            # if incorrectAnswer1 is None or len(incorrectAnswer1) == 0:
+            #     return {'message': f'answer is missing'}, 400
+            # ''' #1: Key code block, setup USER OBJECT '''
+            # uo = User(question=question, 
+            #           incorrectAnswer1=incorrectAnswer1)     
             
             incorrectAnswer2 = body.get('incorrectAnswer2')
-            if incorrectAnswer2 is None or len(incorrectAnswer2) == 0:
-                return {'message': f'answer is missing'}, 400
-            ''' #1: Key code block, setup USER OBJECT '''
-            uo = User(question=question, 
-                      incorrectAnswer1=incorrectAnswer1,
-                      incorrectAnswer2=incorrectAnswer2)
+            # if incorrectAnswer2 is None or len(incorrectAnswer2) == 0:
+            #     return {'message': f'answer is missing'}, 400
+            # ''' #1: Key code block, setup USER OBJECT '''
+            # uo = User(question=question, 
+            #           incorrectAnswer1=incorrectAnswer1,
+            #           incorrectAnswer2=incorrectAnswer2)
                       
             incorrectAnswer3 = body.get('incorrectAnswer3')
-            if incorrectAnswer3 is None or len(incorrectAnswer3) == 0:
-                return {'message': f'answer is missing'}, 400
-            ''' #1: Key code block, setup USER OBJECT '''
+            # if incorrectAnswer3 is None or len(incorrectAnswer3) == 0:
+            #     return {'message': f'answer is missing'}, 400
+            # ''' #1: Key code block, setup USER OBJECT '''
             uo = User(question=question, 
+                      correctAnswer=correctAnswer,
                       incorrectAnswer1=incorrectAnswer1,
                       incorrectAnswer2=incorrectAnswer2,
                       incorrectAnswer3=incorrectAnswer3)       
